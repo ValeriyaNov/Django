@@ -1,0 +1,22 @@
+Watching for file changes with StatReloader
+"GET /about/ HTTP/1.1" 200 537
+Site open in 06/27/2024 16.07.19
+"GET / HTTP/1.1" 200 572
+"GET /about/ HTTP/1.1" 200 537
+Site open in 06/27/2024 16.07.21
+"GET / HTTP/1.1" 200 572
+Watching for file changes with StatReloader
+Site "Main" open in 06/27/2024 16.29.07
+"GET / HTTP/1.1" 200 522
+Site "About us" open in 06/27/2024 16.29.14
+"GET /about/ HTTP/1.1" 200 541
+Site "Main" open in 06/27/2024 16.29.19
+"GET / HTTP/1.1" 200 522
+Site "About us" open in 06/27/2024 16.29.20
+"GET /about/ HTTP/1.1" 200 541
+Site "Main" open in 06/27/2024 16.29.24
+"GET / HTTP/1.1" 200 522
+Site "Main" open in 06/27/2024 16.29.25
+"GET / HTTP/1.1" 200 522
+Site "Main" open in 06/27/2024 16.29.25
+"GET / HTTP/1.1" 200 522
