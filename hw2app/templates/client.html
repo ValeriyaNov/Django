@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список клиентов
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    {% for client in clients %}
+    <div class="content_item">
+        <h3 class="content_item_text">{{client.name}}</h3>
+        <p class="content_item_text">{{client.email}}</p>
+        <p class="content_item_text">{{client.phone_number}}</p>
+        <p class="content_item_text">{{client.adress}}</p>
+        <a href="orders/{{client.pk}}" class="content_item_text"> Заказы
+
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

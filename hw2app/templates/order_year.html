@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список товаров за 365 дней
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <h1>Заказы {{client_name}}</h1>
+    
+    
+    {% for order in client_orders_last_365_days %}
+    <div class="content_item">
+        <h3 class="content_item_text" >{{order.name}}</h3>
+        <p class="content_item_text" >{{order.description}}</p>
+        <p class="content_item_text">{{order.price}}</p>
+        <p class="content_item_text">{{order.quantity}}</p>
+        
+    </div>
+    {% endfor %}
+    
+</div>
+{% endblock %}
