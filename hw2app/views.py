@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Client, Product, Order
 import random
 from django.http import HttpResponse
 from django.utils import timezone
 from datetime import timedelta
+from . import forms
+from django.core.files.storage import FileSystemStorage
+from hw2app.forms import ImageForm
 
 
 
@@ -122,3 +125,43 @@ def client_orders_year(request, client_id):
         
     }
     return render(request, 'order_year.html', context)   
+
+
+def change_product(request, product_id):
+    product = Product.objects.filter(pk=product_id).first()
+    form = forms.ProductForm(request.POST, request.FILES)
+    if request.method == 'POST' and form.is_valid():
+        image = form.cleaned_data['image']
+        if isinstance(image, bool):
+            image = None
+        if image is not None:
+            fs = FileSystemStorage()
+            fs.save(image.name, image)
+        product.name = form.cleaned_data['name']
+        product.description = form.cleaned_data['description']
+        product.price = form.cleaned_data['price']
+        product.quantity = form.cleaned_data['quantity']
+        product.image = image
+        product.save()
+        return redirect('products')
+    else:
+        form = forms.ProductForm(initial={'name': product.name, 'description': product.description,
+                                          'price': product.price, 'quantity': product.quantity, 'image': product.image})
+
+    return render(request, 'change_product.html', {'form': form})
+
+
+def upload_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES) # request.POST чтобы получить текстовую информацию , request.FILES чтобы получить байты
+        if form.is_valid():
+            image = form.cleaned_data['image']
+            fs = FileSystemStorage()  # FileSystemStorage экземпляр позволяет работать с файлами
+            fs.save(image.name, image)
+    else:
+        form = ImageForm()
+    return render(request, 'upload_image.html', {'form': form})
+
+def get_all_products(request):
+    products = Product.objects.all()
+    return render(request, 'products.html', {'products': products})

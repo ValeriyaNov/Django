@@ -13,7 +13,7 @@
     <a href="{{client_id}}/mounth">за последние 30 дней</a>
     <a href="{{client_id}}/year">за последние 365 дней</a>
     <h2>Список заказов за весь период</h2>
-    {% for order in client_orders_last_365_days %}
+    {% for order in client_orders_all %}
     
     <div class="content_item">
         <h3 class="content_item_text" >{{order.name}}</h3>
